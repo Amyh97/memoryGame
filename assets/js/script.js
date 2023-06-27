@@ -12,13 +12,19 @@ const data = [
   {"name":"kiwi", "icon":'<i class="fa-solid fa-kiwi-bird"></i>', "colour":'#669999'},
   {"name":"cat", "icon":'<i class="fa-solid fa-cat"></i>', "colour":'#9933ff'},
 ]
+
+var pairdData = data.concat(data);
+
+function shuffle(pairdData) {
+  pairdData.sort(() => Math.random() - 0.5);
+  return pairdData
+}
 let template = ''
-for(const {name, icon, colour} of data) {
-  console.log(icon + colour);
+for(const {name, icon, colour} of shuffle(pairdData)) {
     template += '' +
-    '<div class="col-3 pt-3 ps-5">' +
-      '<div class="card ' + name + ' py-4" style="background-color:'+colour +'; width:18rem">'+
-        '<h1 class="card-body text-center">'+
+    '<div class="col-2 py-4 ps-5">' +
+      '<div class="card ' + name + '" style="background-color:'+colour +'; width:150px; height:150px;">'+
+        '<h1 class="text-center my-auto">'+
           icon +
         '</h1>' +
       '</div>' +
