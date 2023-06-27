@@ -1,4 +1,4 @@
-const data = [
+var data = [
   {"name":"hippo", "icon":'<i class="fa-solid fa-hippo"></i>',"colour": '#ffff00'},
   {"name":"otter", "icon":'<i class="fa-solid fa-otter"></i>', "colour":'#33ccff'},
   {"name":"dragon", "icon":'<i class="fa-solid fa-dragon"></i>', "colour":'#ff0000'},
@@ -13,22 +13,31 @@ const data = [
   {"name":"cat", "icon":'<i class="fa-solid fa-cat"></i>', "colour":'#9933ff'},
 ]
 
-var pairdData = data.concat(data);
-
-function shuffle(pairdData) {
-  pairdData.sort(() => Math.random() - 0.5);
-  return pairdData
+function RenderCards(x) {
+  $(".option").addClass("disabled");
+  $(".reset").removeClass("hidden");
+  var dataOpt = data.slice(0, x)
+  var pairdData = dataOpt.concat(dataOpt);
+  function shuffle(pairdData) {
+    pairdData.sort(() => Math.random() - 0.5);
+    return pairdData
+  }
+  let template = ''
+  for(const {name, icon, colour} of shuffle(pairdData)) {
+      template += '' +
+      '<div class="col-2 py-4 ps-5">' +
+        '<div class="card ' + name + '" style="background-color:'+colour +'; width:150px; height:150px;">'+
+          '<h1 class="text-center my-auto">'+
+            icon +
+          '</h1>' +
+        '</div>' +
+      '</div>';
+  }
+  $("#cards").append(template);
 }
-let template = ''
-for(const {name, icon, colour} of shuffle(pairdData)) {
-    template += '' +
-    '<div class="col-2 py-4 ps-5">' +
-      '<div class="card ' + name + '" style="background-color:'+colour +'; width:150px; height:150px;">'+
-        '<h1 class="text-center my-auto">'+
-          icon +
-        '</h1>' +
-      '</div>' +
-    '</div>';
-}
 
-$("#cards").append(template);
+function reset() {
+  $("#cards").empty();
+  $(".option").removeClass("disabled");
+
+}

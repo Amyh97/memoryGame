@@ -13,14 +13,27 @@
     <body>
         <header>
             <nav class="navbar navbar-light bg-light">
-                <a class="navbar-brand" href="#">
-                  <img src="#" width="30" height="30" class="d-inline-block align-top" alt="">
-                  Memory Game
-                </a>
+                  <div class="row">
+                    <div class="col-2 text-center">
+                        <i id="logo" class="fa-solid fa-brain"></i>
+                    </div>
+                    <div class="col-3">
+                        <h4>Click to reveal cards and try to find the pairs</h4>
+                    </div>  
+                    <div class="col-4">
+                        <h5>How many pairs would you like to find?</h5>
+                    </div>
+                    <div class="col-3">
+                        <button type="button" onclick="RenderCards(6)" class="btn btn-primary option">6</button>
+                        <button type="button" onclick="RenderCards(9)" class="btn btn-primary option">9</button>
+                        <button type="button" onclick="RenderCards(12)" class="btn btn-primary option">12</button>
+                        <button type="button" onclick="reset()" class="btn btn-primary reset hidden">reset</button>
+                    </div>
+                </div>
               </nav>   
         </header>
         <section>
-            <h4>Explanation here</h4>
+            
             <div class="row" id="cards">
 
             </div>
