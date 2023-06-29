@@ -26,7 +26,7 @@ function RenderCards(x) {
   for(const {name, icon, colour} of shuffle(pairdData)) {
       template += '' +
       '<div class="col-2 py-4 ps-5">' +
-        '<div class="card ' + name + '" style="background-color:'+colour +'; width:150px; height:150px;">'+
+        '<div class="card ' + name + '" cardName="' + name + '" style="background-color:'+colour +'; width:150px; height:150px;">'+
           '<h1 class="text-center my-auto">'+
             icon +
           '</h1>' +
@@ -34,6 +34,18 @@ function RenderCards(x) {
       '</div>';
   }
   $("#cards").append(template);
+
+  var toCheck = []
+  $(".card").on("click", function() {
+    if (toCheck.length < 2) {
+      toCheck.push($(this).attr("cardName"))
+    } 
+
+    if(toCheck.length == 2) {
+      checkMatch(toCheck[0], toCheck[1])
+      toCheck = []
+    }
+  })
 }
 
 function reset() {
@@ -41,3 +53,12 @@ function reset() {
   $(".option").removeClass("disabled");
 
 }
+
+function checkMatch(item1, item2) {
+  if(item1 == item2){
+    $("."+item1).addClass("hide")
+  } else {
+    console.log("no match");
+  }
+}
+
